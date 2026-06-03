@@ -48,15 +48,15 @@ The workflow has four steps:
 
 Pipedream workflow canvas:
 
-![Workflow](screenshots/01-pipedream-canvas.png)
+![Workflow](screenshots/pipedream-canvas.png)
 
 Qualified leads in Airtable:
 
-![Airtable](screenshots/02-airtable-leads.png)
+![Airtable](screenshots/airtable-leads.png)
 
 Example request and response:
 
-![Response](screenshots/03-powershell-response.png)
+![Response](screenshots/powershell-response.png)
 
 ## Example request (PowerShell)
 
