@@ -1,6 +1,6 @@
 # AI Lead Qualifier for Real Estate
 
-A webhook-triggered workflow that qualifies inbound real estate leads in real time using Google Gemini (Hot / Warm / Cold), writes structured records to an Airtable CRM, and returns scoring plus next action as JSON.
+Real-time AI agent that scores incoming real estate leads as Hot, Warm, or Cold and saves them to a CRM automatically.
 
 Built on the Pipedream free tier as a hands-on exploration of agentic LLM workflows.
 
