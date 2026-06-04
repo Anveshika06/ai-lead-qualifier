@@ -50,9 +50,9 @@ After cloning, you'll need to:
 
 ┌─────────────┐    ┌──────────────────┐    ┌──────────────┐    ┌──────────────┐
 
-│   Webhook   │──> │ qualify\_lead\_    │──> │ get\_record\_  │──> │ return\_http\_ │
+│   Webhook   │──> │ qualify\_lead\_  │──> │ get\_record\_  │──> │ return\_http\_ │
 
-│  (trigger)  │    │ with\_gemini      │    │ or\_create    │    │ response     │
+│  (trigger)  │    │ with\_gemini     │    │ or\_create    │    │ response     │
 
 │   POST      │    │ (Python +        │    │ (Airtable)   │    │ (HTTP 200    │
 
