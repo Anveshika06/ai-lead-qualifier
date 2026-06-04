@@ -1,8 +1,6 @@
 # AI Lead Qualifier for Real Estate
 
-Real-time AI agent that scores incoming real estate leads as Hot, Warm, or Cold and saves them to a CRM automatically.
-
-Built on the Pipedream free tier as a hands-on exploration of agentic LLM workflows.
+A webhook-triggered workflow that qualifies inbound real estate leads in real time using Google Gemini (Hot / Warm / Cold), writes structured records to an Airtable CRM, and sends a real-time email alert to a sales rep for Hot leads only — mirroring the lead-qualification, CRM-update, and notification pipeline used by modern AI sales platforms.
 
 ---
 
@@ -10,7 +8,7 @@ Built on the Pipedream free tier as a hands-on exploration of agentic LLM workfl
 
 Clone this workflow into your own Pipedream account with one click:
 
-[Open in Pipedream](https://pipedream.com/new?h=tch_jPfzZx)
+[Open in Pipedream](https://pipedream.com/new?h=tch_VdfeLy)
 
 After cloning, you will need to:
 
@@ -23,12 +21,14 @@ After cloning, you will need to:
 
 ## Architecture
 
-The workflow has four steps:
+The workflow has six steps:
 
 1. Webhook trigger — receives a POST with lead data
-2. Gemini qualification step (Python) — calls Gemini 2.5 Flash-Lite
+2. Gemini qualification step (Python) — calls Gemini 2.5 Flash-Lite for Hot/Warm/Cold scoring
 3. Airtable step — writes the qualified lead to your CRM
-4. HTTP response step — returns lead ID, score, and next action as JSON
+4. Filter — only Hot leads continue to the notification step
+5. Gmail step — sends a real-time email alert with the AI's reasoning and suggested next action
+6. HTTP response step — returns lead ID, score, and next action as JSON
 
 ## Stack
 
@@ -42,7 +42,8 @@ The workflow has four steps:
 1. Receives a lead payload from any source (Zillow, Realtor, website form, etc.) via webhook
 2. Prompts Gemini to classify the lead as Hot, Warm, or Cold, with a reason and suggested next action
 3. Writes the structured record to Airtable in real time
-4. Returns the lead ID, score, and recommended next action to the caller as JSON
+4. For Hot leads only: sends a real-time email alert to the sales rep with the lead's info, AI reasoning, and recommended next action
+5. Returns the lead ID, score, and recommended next action to the caller as JSON
 
 ## Screenshots
 
@@ -53,6 +54,10 @@ Pipedream workflow canvas:
 Qualified leads in Airtable:
 
 ![Airtable](screenshots/airtable-leads.png)
+
+Real-time email alert sent for a Hot lead:
+
+![Email Notification](screenshots/Email-Notification.png)
 
 Example request and response:
 
@@ -79,7 +84,7 @@ Invoke-RestMethod -Uri "https://your-webhook.m.pipedream.net" -Method Post -Body
 ## Repo contents
 
 - code/qualify lead with gemini Python file — the Gemini step with input validation, prompt design, retry with exponential backoff, and graceful JSON-parse fallback
-- screenshots folder — demo screenshots of the workflow, Airtable, and a sample request
+- screenshots folder — demo screenshots of the workflow, Airtable, email notification and a sample request
 - test-payloads folder — three sample lead JSONs (hot, warm, cold) you can POST to test
 
 ## Engineering decisions worth noting
