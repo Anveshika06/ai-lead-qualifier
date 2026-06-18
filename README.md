@@ -1,6 +1,6 @@
 # AI Lead Qualifier for Real Estate
 
-A webhook-triggered workflow that qualifies inbound real estate leads in real time using Google Gemini (Hot / Warm / Cold), writes structured records to an Airtable CRM, and sends a real-time email alert to a sales rep for Hot leads only — mirroring the lead-qualification, CRM-update, and notification pipeline used by modern AI sales platforms.
+A webhook-triggered workflow that qualifies inbound real estate leads in real time using Google Gemini (Hot / Warm / Cold), writes structured records to an Airtable CRM, and sends a real-time email alert to a sales rep for Hot leads only ( mirroring the lead-qualification, CRM-update, and notification pipeline used by modern AI sales platforms).
 
 ---
 
@@ -23,19 +23,19 @@ After cloning, you will need to:
 
 The workflow has six steps:
 
-1. Webhook trigger — receives a POST with lead data
-2. Gemini qualification step (Python) — calls Gemini 2.5 Flash-Lite for Hot/Warm/Cold scoring
-3. Airtable step — writes the qualified lead to your CRM
-4. Filter — only Hot leads continue to the notification step
-5. Gmail step — sends a real-time email alert with the AI's reasoning and suggested next action
-6. HTTP response step — returns lead ID, score, and next action as JSON
+1. Webhook trigger - receives a POST with lead data
+2. Gemini qualification step (Python) - calls Gemini 2.5 Flash-Lite for Hot/Warm/Cold scoring
+3. Airtable step - writes the qualified lead to your CRM
+4. Filter - only Hot leads continue to the notification step
+5. Gmail step - sends a real-time email alert with the AI's reasoning and suggested next action
+6. HTTP response step - returns lead ID, score, and next action as JSON
 
 ## Stack
 
-- Pipedream — workflow orchestration (free tier)
-- Google Gemini 2.5 Flash-Lite — LLM with structured JSON output
-- Airtable — CRM destination
-- Python — custom logic, retry with exponential backoff, graceful JSON-parse fallback
+- Pipedream - workflow orchestration (free tier)
+- Google Gemini 2.5 Flash-Lite - LLM with structured JSON output
+- Airtable - CRM destination
+- Python - custom logic, retry with exponential backoff, graceful JSON-parse fallback
 
 ## What it does
 
