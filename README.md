@@ -3,6 +3,22 @@
 A webhook-triggered workflow that qualifies inbound real estate leads in real time using Google Gemini (Hot / Warm / Cold), writes structured records to an Airtable CRM, and sends a real-time email alert to a sales rep for Hot leads only ( mirroring the lead-qualification, CRM-update, and notification pipeline used by modern AI sales platforms).
 
 ---
+## Project structure
+
+The logic is split into testable modules :
+
+- code/lead_qualifier/prompts.py        — prompt templates
+- code/lead_qualifier/gemini_client.py  — Gemini API client with retry-on-rate-limit
+- code/lead_qualifier/parsing.py        — JSON parsing with fallback
+- code/lead_qualifier/validators.py     — input validation
+- code/qualify_lead_with_gemini.py      — thin Pipedream handler
+- code/local_test.py                    — run the qualifier locally
+- tests/                                — pytest suite (11 tests)
+
+Run the tests:
+    pip install -r requirements.txt
+    pytest tests/ -v
+    
 
 ## Opening in Pipedream
 
@@ -87,21 +103,6 @@ Invoke-RestMethod -Uri "https://your-webhook.m.pipedream.net" -Method Post -Body
 - screenshots folder — demo screenshots of the workflow, Airtable, email notification and a sample request
 - test-payloads folder — three sample lead JSONs (hot, warm, cold) you can POST to test
 
-## Project structure
-
-The logic is split into testable modules so the Pipedream handler stays thin:
-
-- code/lead_qualifier/prompts.py        — prompt templates
-- code/lead_qualifier/gemini_client.py  — Gemini API client with retry-on-rate-limit
-- code/lead_qualifier/parsing.py        — JSON parsing with fallback
-- code/lead_qualifier/validators.py     — input validation
-- code/qualify_lead_with_gemini.py      — thin Pipedream handler
-- code/local_test.py                    — run the qualifier locally
-- tests/                                — pytest suite (11 tests)
-
-Run the tests:
-    pip install -r requirements.txt
-    pytest tests/ -v
     
 ## Engineering decisions worth noting
 
