@@ -87,6 +87,22 @@ Invoke-RestMethod -Uri "https://your-webhook.m.pipedream.net" -Method Post -Body
 - screenshots folder — demo screenshots of the workflow, Airtable, email notification and a sample request
 - test-payloads folder — three sample lead JSONs (hot, warm, cold) you can POST to test
 
+## Project structure
+
+The logic is split into testable modules so the Pipedream handler stays thin:
+
+- code/lead_qualifier/prompts.py        — prompt templates
+- code/lead_qualifier/gemini_client.py  — Gemini API client with retry-on-rate-limit
+- code/lead_qualifier/parsing.py        — JSON parsing with graceful fallback
+- code/lead_qualifier/validators.py     — input validation
+- code/qualify_lead_with_gemini.py      — thin Pipedream handler
+- code/local_test.py                    — run the qualifier locally
+- tests/                                — pytest suite (11 tests)
+
+Run the tests:
+    pip install -r requirements.txt
+    pytest tests/ -v
+    
 ## Engineering decisions worth noting
 
 - Model migration: originally built on gemini-2.0-flash, which Google deprecated mid-build. Migrated to gemini-2.5-flash-lite — a reminder that model-agnostic code matters in production.
