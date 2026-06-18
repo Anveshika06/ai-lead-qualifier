@@ -4,9 +4,9 @@ A webhook-triggered workflow that qualifies inbound real estate leads in real ti
 
 ---
 
-## Try it yourself
+## Opening in Pipedream
 
-Clone this workflow into your own Pipedream account with one click:
+Clone this workflow into your own Pipedream account:
 
 [Open in Pipedream](https://pipedream.com/new?h=tch_VdfeLy)
 
@@ -93,7 +93,7 @@ The logic is split into testable modules so the Pipedream handler stays thin:
 
 - code/lead_qualifier/prompts.py        — prompt templates
 - code/lead_qualifier/gemini_client.py  — Gemini API client with retry-on-rate-limit
-- code/lead_qualifier/parsing.py        — JSON parsing with graceful fallback
+- code/lead_qualifier/parsing.py        — JSON parsing with fallback
 - code/lead_qualifier/validators.py     — input validation
 - code/qualify_lead_with_gemini.py      — thin Pipedream handler
 - code/local_test.py                    — run the qualifier locally
@@ -105,7 +105,7 @@ Run the tests:
     
 ## Engineering decisions worth noting
 
-- Model migration: originally built on gemini-2.0-flash, which Google deprecated mid-build. Migrated to gemini-2.5-flash-lite — a reminder that model-agnostic code matters in production.
+- Model migration: originally built on gemini-2.0-flash, which Google deprecated mid-build. Migrated to gemini-2.5-flash-lite - a reminder that model-agnostic code matters in production.
 - Rate limit handling: wrapped the Gemini call in retry with exponential backoff (2s, 4s, 8s) so the workflow degrades gracefully when free-tier quota hits.
 - Robust JSON parsing: LLMs occasionally return malformed JSON. The code falls back to a flagged Cold-plus-manual-review record rather than crashing the pipeline.
 - Secrets handling: API keys live in Pipedream environment variables, not in code.
