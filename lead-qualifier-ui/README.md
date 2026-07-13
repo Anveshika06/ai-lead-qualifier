@@ -1,4 +1,4 @@
-# AI Lead Qualifier — Web App
+# AI Lead Qualifier: Web App
 
 A full-stack GenAI web application that qualifies inbound real estate leads in real time and puts a human in the loop. A user submits a lead, an LLM scores it Hot / Warm / Cold with reasoning and a suggested next action, and the user can accept, override, or escalate the decision.
 
