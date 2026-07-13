@@ -2,10 +2,8 @@
 
 A webhook-triggered workflow that qualifies inbound real estate leads in real time using Google Gemini (Hot / Warm / Cold), writes structured records to an Airtable CRM, and sends a real-time email alert to a sales rep for Hot leads only ( mirroring the lead-qualification, CRM-update, and notification pipeline used by modern AI sales platforms).
 
-## Web app
+## Web app : A full-stack React + FastAPI version with a human-in-the-loop review interface lives in [`lead-qualifier-ui/`](lead-qualifier-ui/). 
 
-A full-stack React + FastAPI version with a human-in-the-loop review interface lives in [`lead-qualifier-ui/`](lead-qualifier-ui/). Same core logic, user-facing product.
----
 ## Project structure
 
 The logic is split into testable modules :
