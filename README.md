@@ -9,13 +9,13 @@ A full-stack React + FastAPI version with a human-in-the-loop review interface l
 
 The logic is split into testable modules :
 
-- code/lead_qualifier/prompts.py        — prompt templates
-- code/lead_qualifier/gemini_client.py  — Gemini API client with retry-on-rate-limit
-- code/lead_qualifier/parsing.py        — JSON parsing with fallback
-- code/lead_qualifier/validators.py     — input validation
-- code/qualify_lead_with_gemini.py      — thin Pipedream handler
-- code/local_test.py                    — run the qualifier locally
-- tests/                                — pytest suite (11 tests)
+- code/lead_qualifier/prompts.py        - prompt templates
+- code/lead_qualifier/gemini_client.py  - Gemini API client with retry-on-rate-limit
+- code/lead_qualifier/parsing.py        - JSON parsing with fallback
+- code/lead_qualifier/validators.py     - input validation
+- code/qualify_lead_with_gemini.py      - thin Pipedream handler
+- code/local_test.py                    - run the qualifier locally
+- tests/                                - pytest suite (11 tests)
 
 Run the tests:
     pip install -r requirements.txt
